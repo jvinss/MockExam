@@ -1,6 +1,6 @@
 # MockExam
 comandi:
 
-{"cmd": "all"} __
-{"cmd": "more_expensive"} __
+{"cmd": "all"} \
+{"cmd": "more_expensive"} \
 {"cmd": "sorted"}
