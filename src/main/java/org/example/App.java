@@ -46,9 +46,8 @@ public class App
             out.println("Accepted");
 
             ClientHandler clientHandler = new ClientHandler(clientSocket);
-            if (!clientHandler.manage()){
-                System.out.println("Cannot run client");
-            }
+            Thread t = new Thread(clientHandler);
+            t.start();
         }
     }
 }
