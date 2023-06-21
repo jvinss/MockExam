@@ -55,7 +55,14 @@ public class ClientHandler implements Runnable{
         Gson g = new Gson();
         Car moreExpensiveCar = null;
         String carJson = "";
-        switch (s) {
+        Command cmd = null;
+        try {
+            cmd = g.fromJson(s,Command.class);
+        } catch (Exception e){
+            out.println("Comando non riconosciuto");
+            return;
+        }
+        switch (cmd.getCmd()) {
             case "more_expensive":
                 double max = Double.MIN_VALUE;
                 for (Car car : cars) {
