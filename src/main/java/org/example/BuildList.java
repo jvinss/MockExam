@@ -9,7 +9,6 @@ public class BuildList {
         cars.add(new Car(123,"bmw",3594.9, 2));
         cars.add(new Car(3634,"audi",38346.9, 1));
         cars.add(new Car(135,"ferrari",130000.4, 10));
-        System.out.println("Lista creata: " + cars);
     }
 
     public static ArrayList<Car> getCars() {

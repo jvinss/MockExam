@@ -33,7 +33,7 @@ public class App
             System.out.println("Server non inizializzato.");
             return;
         } else {
-            System.out.println("Server inizializzato");
+            out.println();
         }
 
         while (true){

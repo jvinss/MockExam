@@ -62,43 +62,56 @@ public class ClientHandler implements Runnable{
             out.println("Comando non riconosciuto");
             return;
         }
-        switch (cmd.getCmd()) {
-            case "more_expensive":
-                double max = Double.MIN_VALUE;
-                for (Car car : cars) {
-                    if (car.getPrice() > max) {
-                        moreExpensiveCar = car;
+        if (cmd == null) {
+            out.println("Comando non riconosciuto");
+            return;
+        }
+        try {
+            switch (cmd.getCmd()) {
+                case "more_expensive":
+                    double max = Double.MIN_VALUE;
+                    for (Car car : cars) {
+                        if (car.getPrice() > max) {
+                            moreExpensiveCar = car;
+                        }
                     }
-                }
-                carJson = g.toJson(moreExpensiveCar);
-                out.println(carJson);
-                break;
-            case "all":
-                for (Car car : cars) {
-                    carJson = g.toJson(car);
+                    carJson = g.toJson(moreExpensiveCar);
                     out.println(carJson);
-                }
-                break;
-            case "sorted":
-                Comparator<Car> comparator = new Comparator<Car>() {
-                    @Override
-                    public int compare(Car o1, Car o2) {
-                        return o1.getBrand().compareTo(o2.getBrand());
+                    break;
+                case "all":
+                    for (Car car : cars) {
+                        carJson = g.toJson(car);
+                        out.println(carJson);
                     }
-                };
+                    break;
+                case "sorted":
+                    Comparator<Car> comparator = new Comparator<Car>() {
+                        @Override
+                        public int compare(Car o1, Car o2) {
+                            return o1.getBrand().compareTo(o2.getBrand());
+                        }
+                    };
 
-                Collections.sort(cars,comparator);
-                for (Car car : cars) {
-                    carJson = g.toJson(car);
-                    out.println(carJson);
-                }
-                break;
-            default:
-                out.println("Comando non riconosciuto.");
-                break;
+                    Collections.sort(cars,comparator);
+                    for (Car car : cars) {
+                        carJson = g.toJson(car);
+                        out.println(carJson);
+                    }
+                    break;
+                default:
+                    out.println("Comando non riconosciuto.");
+                    break;
+            }
+        } catch (Exception e) {
+            out.println("Comando non riconosciuto");
+            return;
         }
     }
 
     @Override
-    public void run() { manage(); }
+    public void run() {
+        if (!manage()){
+            System.out.println("Cannot run client");
+        }
+    }
 }
