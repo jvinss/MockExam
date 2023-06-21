@@ -79,10 +79,8 @@ public class ClientHandler implements Runnable{
                     out.println(carJson);
                     break;
                 case "all":
-                    for (Car car : cars) {
-                        carJson = g.toJson(car);
-                        out.println(carJson);
-                    }
+                    carJson = g.toJson(cars);
+                    out.println(carJson);
                     break;
                 case "sorted":
                     Comparator<Car> comparator = new Comparator<Car>() {
